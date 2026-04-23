@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-luxury-black text-luxury-cream antialiased selection:bg-primary selection:text-white;
+    @apply bg-[#FFFDFB] text-brand-charcoal antialiased selection:bg-brand-gold selection:text-white font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -13,42 +13,43 @@
 }
 
 @layer components {
-  .btn-premium {
-    @apply px-8 py-3 rounded-none uppercase tracking-widest text-sm font-semibold transition-all duration-500 border border-primary text-primary hover:bg-primary hover:text-luxury-black hover:scale-105 active:scale-95;
+  .btn-luxury {
+    @apply px-8 py-3 rounded-luxury uppercase tracking-widest text-xs font-semibold transition-all duration-300 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white active:scale-95;
   }
 
-  .btn-premium-filled {
-    @apply px-8 py-3 rounded-none uppercase tracking-widest text-sm font-semibold transition-all duration-500 bg-primary text-luxury-black border border-primary hover:bg-transparent hover:text-primary hover:scale-105 active:scale-95;
+  .btn-luxury-filled {
+    @apply px-8 py-3 rounded-luxury uppercase tracking-widest text-xs font-semibold transition-all duration-300 bg-brand-gold text-white border border-brand-gold hover:bg-transparent hover:text-brand-gold active:scale-95;
   }
 
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 p-6 transition-all duration-300 hover:border-primary/30;
+  .luxury-card {
+    @apply bg-white rounded-luxury border border-brand-beige p-6 shadow-sm transition-all duration-500 hover:shadow-gold-glow hover:-translate-y-1;
   }
 
   .gold-text {
-    @apply bg-gold-gradient bg-clip-text text-transparent;
+    @apply text-brand-gold;
   }
 
   .section-padding {
-    @apply py-20 px-6 sm:px-12 lg:px-24;
+    @apply py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto;
   }
 
   .input-luxury {
-    @apply bg-transparent border-b border-white/20 focus:border-primary outline-none py-2 transition-all duration-300 placeholder:text-white/30;
+    @apply bg-white border border-brand-beige rounded-luxury px-4 py-3 focus:border-brand-gold outline-none transition-all duration-300 placeholder:text-gray-400;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #F8F5F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4af37;
+  background: #D4AF37;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -56,15 +57,13 @@
 }
 
 /* Animations */
-.reveal-up {
+.fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-@keyframes revealUp {
+@keyframes fadeIn {
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }

@@ -19,8 +19,11 @@ const productSchema = new mongoose.Schema({
   discountPrice: Number,
   materials: [{
     type: String,
-    enum: ['Gold', 'Silver', 'Rose Gold', 'Platinum', 'Diamond', 'Pearl', 'Gemstone']
   }],
+  careInstructions: {
+    type: String,
+    default: 'Handle with care. Avoid contact with water and perfume.'
+  },
   metalWeight: Number, // In grams
   purity: String, // e.g., 18k, 22k
   category: {

@@ -1,47 +1,48 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const ImageGallery = ({ images }) => {
-  const [activeIdx, setActiveIdx] = useState(0);
+const ImageGallery = ({ images = [] }) => {
+  const [mainImage, setMainImage] = useState(images[0]?.url || 'https://via.placeholder.com/600x800?text=Saira+Ornaments');
+  const [zoom, setZoom] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setMousePos({ x, y });
+  };
 
   return (
     <div className="flex flex-col-reverse lg:flex-row gap-6">
       {/* Thumbnails */}
-      <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-y-auto max-h-[600px] no-scrollbar">
+      <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-y-auto no-scrollbar lg:max-h-[600px]">
         {images.map((img, idx) => (
-          <button
+          <button 
             key={idx}
-            onClick={() => setActiveIdx(idx)}
-            className={`relative min-w-[80px] lg:min-w-0 w-20 lg:w-24 aspect-[4/5] bg-white/5 border transition-all duration-300 ${
-              activeIdx === idx ? 'border-primary' : 'border-transparent hover:border-white/20'
-            }`}
+            onClick={() => setMainImage(img.url)}
+            className={`flex-shrink-0 w-20 h-24 rounded-luxury overflow-hidden border-2 transition-all ${mainImage === img.url ? 'border-brand-gold' : 'border-transparent'}`}
           >
-            <img 
-              src={img.url} 
-              alt={`Thumbnail ${idx}`} 
-              className="w-full h-full object-cover"
-            />
+            <img src={img.url} alt="Thumbnail" className="w-full h-full object-cover" />
           </button>
         ))}
       </div>
 
       {/* Main Image */}
-      <div className="flex-grow aspect-[4/5] bg-white/3 relative overflow-hidden group">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={activeIdx}
-            src={images[activeIdx].url}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5 }}
-            className="w-full h-full object-cover cursor-zoom-in"
+      <div className="flex-grow">
+        <div 
+          className="relative aspect-[3/4] rounded-luxury overflow-hidden bg-brand-beige/20 cursor-zoom-in"
+          onMouseEnter={() => setZoom(true)}
+          onMouseLeave={() => setZoom(false)}
+          onMouseMove={handleMouseMove}
+        >
+          <img 
+            src={mainImage} 
+            alt="Product" 
+            className={`w-full h-full object-cover transition-transform duration-200 ${zoom ? 'scale-150' : 'scale-100'}`}
+            style={zoom ? { transformOrigin: `${mousePos.x}% ${mousePos.y}%` } : {}}
           />
-        </AnimatePresence>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-6 left-6 w-12 h-12 border-t border-l border-white/20 pointer-events-none" />
-        <div className="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-white/20 pointer-events-none" />
+        </div>
       </div>
     </div>
   );

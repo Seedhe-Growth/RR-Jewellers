@@ -9,7 +9,7 @@ router.get('/logout', authController.logout);
 
 // Protected routes
 router.use(authController.protect);
-router.get('/me', (req, res) => {
+router.get('/profile', (req, res) => {
   res.status(200).json({ status: 'success', data: { user: req.user } });
 });
 
