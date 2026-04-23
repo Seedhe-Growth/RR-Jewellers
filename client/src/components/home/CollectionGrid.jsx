@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 const collections = [
   {
     title: 'Minimalist',
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1974&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop',
     link: '/shop?collection=minimalist'
   },
   {
     title: 'Party Wear',
-    image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=2000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop',
     link: '/shop?collection=party'
   },
   {
     title: 'Daily Essentials',
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1974&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop',
     link: '/shop?collection=daily'
   }
 ];

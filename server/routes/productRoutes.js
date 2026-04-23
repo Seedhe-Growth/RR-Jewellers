@@ -4,6 +4,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
+router.get('/collections', productController.getCollections);
 router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProduct);
 

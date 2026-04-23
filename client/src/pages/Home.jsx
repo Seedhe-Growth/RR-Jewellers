@@ -19,10 +19,10 @@ const Home = () => {
       } catch (err) {
         // Fallback to mock data if API fails
         setFeaturedProducts([
-          { _id: '1', title: 'Golden Minimalist Earrings', price: 1299, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1974&auto=format&fit=crop', category: 'Earrings' },
-          { _id: '2', title: 'Luxury Pearl Necklace', price: 2499, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1974&auto=format&fit=crop', category: 'Necklace' },
-          { _id: '3', title: 'Diamond Studded Ring', price: 1899, image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=2000&auto=format&fit=crop', category: 'Ring' },
-          { _id: '4', title: 'Royal Gold Bangle', price: 3299, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop', category: 'Bangle' },
+          { _id: '1', title: 'Golden Minimalist Earrings', price: 1299, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop', category: 'Earrings' },
+          { _id: '2', title: 'Luxury Pearl Necklace', price: 2499, image: 'https://images.unsplash.com/photo-1515562141207-7a88bb7ce338?q=80&w=800&auto=format&fit=crop', category: 'Necklace' },
+          { _id: '3', title: 'Diamond Studded Ring', price: 1899, image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop', category: 'Ring' },
+          { _id: '4', title: 'Royal Gold Bangle', price: 3299, image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop', category: 'Bangle' },
         ]);
       }
     };

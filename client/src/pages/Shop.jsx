@@ -12,6 +12,7 @@ const Shop = () => {
   const [sortBy, setSortBy] = useState(searchParams.get('sort') || 'newest');
   
   const currentCat = searchParams.get('category') || 'all';
+  const currentColl = searchParams.get('collection') || 'all';
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,6 +20,7 @@ const Shop = () => {
       try {
         let url = `/products?sort=${sortBy}`;
         if (currentCat !== 'all') url += `&category=${currentCat}`;
+        if (currentColl !== 'all') url += `&collection=${currentColl}`;
         
         const { data } = await api.get(url);
         setProducts(data.data.products);
@@ -29,7 +31,17 @@ const Shop = () => {
       }
     };
     fetchProducts();
-  }, [currentCat, sortBy]);
+  }, [currentCat, currentColl, sortBy]);
+
+  const handleCategoryChange = (slug) => {
+    const params = new URLSearchParams(searchParams);
+    if (slug === 'all') {
+      params.delete('category');
+    } else {
+      params.set('category', slug);
+    }
+    setSearchParams(params);
+  };
 
   const categories = [
     { name: 'All', slug: 'all' },
@@ -76,7 +88,7 @@ const Shop = () => {
             {categories.map((cat) => (
               <button
                 key={cat.slug}
-                onClick={() => setSearchParams({ category: cat.slug })}
+                onClick={() => handleCategoryChange(cat.slug)}
                 className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-all relative pb-2 whitespace-nowrap ${
                   currentCat === cat.slug ? 'text-brand-gold' : 'text-gray-400 hover:text-brand-charcoal'
                 }`}

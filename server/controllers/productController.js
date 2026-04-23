@@ -1,14 +1,32 @@
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const Collection = require('../models/Collection');
+
+exports.getCollections = async (req, res) => {
+  try {
+    const collections = await Collection.find();
+    res.status(200).json({
+      status: 'success',
+      data: { collections }
+    });
+  } catch (err) {
+    res.status(400).json({ status: 'fail', message: err.message });
+  }
+};
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const { category, sort, priceRange } = req.query;
+    const { category, collection, sort, priceRange } = req.query;
     let query = {};
 
     if (category && category !== 'all') {
-      const categoryDoc = await Category.findOne({ slug: category });
+      const categoryDoc = await Category.findOne({ slug: category.toLowerCase() });
       if (categoryDoc) query.category = categoryDoc._id;
+    }
+
+    if (collection && collection !== 'all') {
+      const collectionDoc = await Collection.findOne({ slug: collection.toLowerCase() });
+      if (collectionDoc) query.collectionId = collectionDoc._id;
     }
 
     let queryPromise = Product.find(query).populate('category');

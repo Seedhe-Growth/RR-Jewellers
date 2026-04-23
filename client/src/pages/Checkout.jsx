@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import api from '../services/api';
-import { motion } from 'framer-motion';
-import { CheckCircle, CreditCard, Truck, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle, CreditCard, Truck, MapPin, Search, Loader2 } from 'lucide-react';
+import { Country, State, City } from 'country-state-city';
+import AddressMap from '../components/checkout/AddressMap';
 
 const Checkout = () => {
   const { cartItems, cartTotal, clearCart } = useCart();
@@ -18,12 +20,73 @@ const Checkout = () => {
     state: '',
     zipCode: '',
     country: 'India',
+    countryCode: 'IN',
+    stateCode: '',
+    taluka: '',
     paymentMethod: 'Cash on Delivery'
   });
 
+  const [loadingPincode, setLoadingPincode] = useState(false);
+  const countries = Country.getAllCountries();
+  const states = formData.countryCode ? State.getStatesOfCountry(formData.countryCode) : [];
+  const cities = (formData.countryCode && formData.stateCode) ? City.getCitiesOfState(formData.countryCode, formData.stateCode) : [];
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    
+    if (name === 'country') {
+      const countryObj = countries.find(c => c.name === value);
+      setFormData({ 
+        ...formData, 
+        country: value, 
+        countryCode: countryObj?.isoCode || '',
+        state: '',
+        stateCode: '',
+        city: ''
+      });
+    } else if (name === 'state') {
+      const stateObj = states.find(s => s.name === value);
+      setFormData({ 
+        ...formData, 
+        state: value, 
+        stateCode: stateObj?.isoCode || '',
+        city: ''
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
+  // Zip Code Lookup Logic (Targets India specifically for Taluka as per user request)
+  useEffect(() => {
+    const lookupPincode = async () => {
+      if (formData.zipCode.length === 6 && formData.countryCode === 'IN') {
+        setLoadingPincode(true);
+        try {
+          const res = await fetch(`https://api.postalpincode.in/pincode/${formData.zipCode}`);
+          const data = await res.json();
+          
+          if (data[0].Status === 'Success') {
+            const details = data[0].PostOffice[0];
+            setFormData(prev => ({
+              ...prev,
+              taluka: details.Taluka || details.Block || details.Name,
+              city: details.District,
+              state: details.State,
+              // Update codes for cascading logic
+              stateCode: states.find(s => s.name === details.State)?.isoCode || prev.stateCode
+            }));
+            toast.success(`Found location: ${details.Name}`);
+          }
+        } catch (err) {
+          console.error('Pincode lookup failed', err);
+        } finally {
+          setLoadingPincode(false);
+        }
+      }
+    };
+    lookupPincode();
+  }, [formData.zipCode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +104,8 @@ const Checkout = () => {
           city: formData.city,
           state: formData.state,
           zipCode: formData.zipCode,
-          country: formData.country
+          country: formData.country,
+          taluka: formData.taluka
         },
         paymentMethod: formData.paymentMethod,
         itemsPrice: cartTotal,
@@ -53,7 +117,7 @@ const Checkout = () => {
       const { data } = await api.post('/orders', orderData);
       toast.success('Order placed successfully!');
       clearCart();
-      navigate(`/profile`); // Or to an order confirmation page
+      navigate(`/profile`);
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to place order');
     }
@@ -94,55 +158,111 @@ const Checkout = () => {
                 <input 
                   name="street"
                   required
-                  placeholder="123 Luxury Lane"
+                  placeholder="Apartment, suite, unit, building, floor, etc."
                   className="input-luxury"
                   value={formData.street}
                   onChange={handleChange}
                 />
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">City</label>
-                <input 
-                  name="city"
-                  required
-                  placeholder="Mumbai"
-                  className="input-luxury"
-                  value={formData.city}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">State</label>
-                <input 
-                  name="state"
-                  required
-                  placeholder="Maharashtra"
-                  className="input-luxury"
-                  value={formData.state}
-                  onChange={handleChange}
-                />
-              </div>
+
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Zip Code</label>
+                <div className="relative">
+                  <input 
+                    name="zipCode"
+                    required
+                    placeholder="400001"
+                    className="input-luxury pr-10"
+                    value={formData.zipCode}
+                    onChange={handleChange}
+                    maxLength={6}
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    {loadingPincode ? (
+                      <Loader2 size={16} className="text-brand-gold animate-spin" />
+                    ) : (
+                      <Search size={16} className="text-gray-300" />
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Taluka / Locality</label>
                 <input 
-                  name="zipCode"
-                  required
-                  placeholder="400001"
-                  className="input-luxury"
-                  value={formData.zipCode}
+                  name="taluka"
+                  placeholder="Area / Sub-district"
+                  className="input-luxury bg-brand-beige/5"
+                  value={formData.taluka}
                   onChange={handleChange}
+                  readOnly={formData.countryCode === 'IN' && formData.taluka !== ''}
                 />
               </div>
+
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Country</label>
-                <input 
+                <select 
                   name="country"
                   required
-                  placeholder="India"
-                  className="input-luxury"
+                  className="input-luxury appearance-none"
                   value={formData.country}
                   onChange={handleChange}
-                />
+                >
+                  {countries.map(c => (
+                    <option key={c.isoCode} value={c.name}>{c.name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">State</label>
+                <select 
+                  name="state"
+                  required
+                  className="input-luxury appearance-none"
+                  value={formData.state}
+                  onChange={handleChange}
+                  disabled={states.length === 0}
+                >
+                  <option value="">Select State</option>
+                  {states.map(s => (
+                    <option key={s.isoCode} value={s.name}>{s.name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">City</label>
+                <select 
+                  name="city"
+                  required
+                  className="input-luxury appearance-none"
+                  value={formData.city}
+                  onChange={handleChange}
+                  disabled={cities.length === 0 && formData.city === ''}
+                >
+                  <option value="">Select City</option>
+                  {cities.map(c => (
+                    <option key={c.name} value={c.name}>{c.name}</option>
+                  ))}
+                  {formData.city && !cities.find(c => c.name === formData.city) && (
+                    <option value={formData.city}>{formData.city}</option>
+                  )}
+                </select>
+              </div>
+
+              <div className="md:col-span-2">
+                <AnimatePresence>
+                  {formData.street && formData.city && (
+                    <AddressMap 
+                      street={formData.street} 
+                      city={formData.city} 
+                      state={formData.state} 
+                      zipCode={formData.zipCode} 
+                      country={formData.country} 
+                    />
+                  )}
+                </AnimatePresence>
               </div>
 
               <div className="md:col-span-2 pt-8">

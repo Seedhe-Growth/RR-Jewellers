@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { Camera, ExternalLink, Sparkles } from 'lucide-react';
 
 const lookbookItems = [
-  { id: 1, title: 'Summer Radiance', type: 'Editorial', image: 'https://images.unsplash.com/photo-1573408302185-91275ca862fa?auto=format&fit=crop&q=80&w=800' },
-  { id: 2, title: 'Bridal Grandeur', type: 'Signature', image: 'https://images.unsplash.com/photo-1515562141207-7a88bb7ce338?auto=format&fit=crop&q=80&w=800' },
-  { id: 3, title: 'Minimalist Chic', type: 'Daily Wear', image: 'https://images.unsplash.com/photo-1535633302703-94209144bd48?auto=format&fit=crop&q=80&w=800' },
-  { id: 4, title: 'Emerald Dreams', type: 'Occasion', image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80&w=800' },
-  { id: 5, title: 'Golden Hour', type: 'Campaign', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=800' },
-  { id: 6, title: 'The Modern Heirloom', type: 'Legacy', image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=800' },
+  { id: 1, title: 'Summer Radiance', type: 'Editorial', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=800' },
+  { id: 2, title: 'Bridal Grandeur', type: 'Signature', image: 'https://images.unsplash.com/photo-1611085583191-a3b1a3089d9a?auto=format&fit=crop&q=80&w=800' },
+  { id: 3, title: 'Minimalist Chic', type: 'Daily Wear', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&q=80&w=800' },
+  { id: 4, title: 'Emerald Dreams', type: 'Occasion', image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=800' },
+  { id: 5, title: 'Golden Hour', type: 'Campaign', image: 'https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?auto=format&fit=crop&q=80&w=800' },
+  { id: 6, title: 'The Modern Heirloom', type: 'Legacy', image: 'https://images.unsplash.com/photo-1626784215021-2e39ccf971cd?auto=format&fit=crop&q=80&w=800' },
 ];
 
 const Lookbook = () => {

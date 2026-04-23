@@ -13,6 +13,8 @@ import Auth from './pages/Auth';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import AdminDashboard from './pages/Admin/Dashboard';
+import Collections from './pages/Collections';
+import Lookbook from './pages/Lookbook';
 
 // Components
 import Layout from './components/Layout';
@@ -35,6 +37,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="collections" element={<Collections />} />
+          <Route path="lookbook" element={<Lookbook />} />
           <Route path="product/:id" element={<ProductDetail />} />
           <Route path="cart" element={<Cart />} />
           <Route path="about" element={<About />} />
