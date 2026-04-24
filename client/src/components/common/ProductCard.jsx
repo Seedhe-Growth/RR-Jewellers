@@ -3,16 +3,26 @@ import { Link } from 'react-router-dom';
 import { ShoppingBag, Heart, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
+
+  const isLiked = isInWishlist(product._id);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
     addToCart(product);
     toast.success(`${product.title} added to cart!`);
+  };
+
+  const handleWishlist = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleWishlist(product);
   };
 
   return (
@@ -32,8 +42,15 @@ const ProductCard = ({ product }) => {
           
           {/* Quick Actions */}
           <div className="absolute top-4 right-4 flex flex-col space-y-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
-            <button className="w-10 h-10 bg-white dark:bg-[#1A1A1A] rounded-full flex items-center justify-center text-brand-charcoal dark:text-white hover:bg-brand-gold dark:hover:bg-brand-gold hover:text-white shadow-lg transition-colors">
-              <Heart size={18} />
+            <button 
+              onClick={handleWishlist}
+              className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-colors ${
+                isLiked 
+                  ? 'bg-red-500 text-white' 
+                  : 'bg-white dark:bg-[#1A1A1A] text-brand-charcoal dark:text-white hover:bg-brand-gold hover:text-white'
+              }`}
+            >
+              <Heart size={18} className={isLiked ? 'fill-current' : ''} />
             </button>
             <button 
               onClick={handleAddToCart}

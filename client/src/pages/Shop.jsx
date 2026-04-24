@@ -90,7 +90,7 @@ const Shop = () => {
                 key={cat.slug}
                 onClick={() => handleCategoryChange(cat.slug)}
                 className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-all relative pb-2 whitespace-nowrap ${
-                  currentCat === cat.slug ? 'text-brand-gold' : 'text-gray-400 dark:text-white/40 hover:text-brand-charcoal dark:hover:text-white'
+                  currentCat === cat.slug ? 'text-brand-gold' : 'text-brand-charcoal/40 dark:text-white/40 hover:text-brand-charcoal dark:hover:text-white'
                 }`}
               >
                 {cat.name}
@@ -101,9 +101,9 @@ const Shop = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6">
             <div className="flex items-center gap-3">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-white/40">Sort:</span>
+              <span className="text-[10px] uppercase tracking-widest font-bold text-brand-charcoal/40 dark:text-white/40">Sort:</span>
               <select 
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
@@ -115,9 +115,9 @@ const Shop = () => {
                 <option value="popular" className="dark:bg-[#0A0A0A]">Popularity</option>
               </select>
             </div>
-            <div className="hidden sm:flex items-center gap-4 text-brand-beige border-l border-brand-beige pl-6">
+            <div className="hidden sm:flex items-center gap-4 text-brand-beige dark:text-white/10 border-l border-brand-beige dark:border-white/10 pl-6">
               <LayoutGrid size={18} className="text-brand-gold cursor-pointer" />
-              <List size={18} className="cursor-pointer hover:text-brand-charcoal transition-colors" />
+              <List size={18} className="cursor-pointer hover:text-brand-charcoal dark:hover:text-white transition-colors" />
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ const Shop = () => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-40">
-            <h3 className="text-2xl text-gray-300 font-serif italic mb-6">No pieces found in this collection.</h3>
+            <h3 className="text-2xl text-brand-charcoal/20 dark:text-white/20 font-serif italic mb-6">No pieces found in this collection.</h3>
             <button 
               onClick={() => setSearchParams({ category: 'all' })}
               className="btn-luxury"

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import { useTheme } from '../../context/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ShoppingBag, Heart, User, Menu, X, Sun, Moon } from 'lucide-react';
@@ -9,8 +10,10 @@ import { Search, ShoppingBag, Heart, User, Menu, X, Sun, Moon } from 'lucide-rea
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { user, logout } = useAuth();
   const { cartCount } = useCart();
+  const { wishlist } = useWishlist();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
@@ -31,7 +34,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white dark:bg-[#0A0A0A] shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass py-3 shadow-sm border-b border-brand-beige/20 dark:border-white/5' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Mobile Menu Toggle */}
         <button className="lg:hidden text-brand-charcoal dark:text-white" onClick={() => setIsMobileMenuOpen(true)}>
@@ -58,11 +61,19 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="flex items-center space-x-5 text-brand-charcoal dark:text-white">
-          <button className="hover:text-brand-gold transition-colors hidden sm:block">
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="hover:text-brand-gold transition-colors hidden sm:block"
+          >
             <Search size={20} />
           </button>
-          <Link to="/wishlist" className="hover:text-brand-gold transition-colors hidden sm:block">
+          <Link to="/wishlist" className="relative hover:text-brand-gold transition-colors hidden sm:block">
             <Heart size={20} />
+            {wishlist.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[8px] w-3.5 h-3.5 flex items-center justify-center rounded-full">
+                {wishlist.length}
+              </span>
+            )}
           </Link>
           <Link to="/cart" className="relative hover:text-brand-gold transition-colors">
             <ShoppingBag size={20} />
@@ -138,6 +149,36 @@ const Navbar = () => {
                   <><Sun size={24} /> Light Mode</>
                 )}
               </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
+      {/* Search Overlay */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] glass flex items-center justify-center p-6"
+          >
+            <button 
+              onClick={() => setIsSearchOpen(false)}
+              className="absolute top-10 right-10 text-brand-charcoal dark:text-white hover:rotate-90 transition-transform duration-300"
+            >
+              <X size={32} />
+            </button>
+            <div className="w-full max-w-4xl flex flex-col gap-8">
+              <span className="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-bold text-center">Search Saira Ornaments</span>
+              <div className="relative">
+                <input 
+                  autoFocus
+                  placeholder="What are you looking for?" 
+                  className="w-full bg-transparent border-b-2 border-brand-beige dark:border-white/10 py-6 text-4xl md:text-6xl font-serif text-brand-charcoal dark:text-white focus:outline-none focus:border-brand-gold transition-colors"
+                />
+                <Search className="absolute right-0 top-1/2 -translate-y-1/2 text-brand-gold" size={40} />
+              </div>
             </div>
           </motion.div>
         )}

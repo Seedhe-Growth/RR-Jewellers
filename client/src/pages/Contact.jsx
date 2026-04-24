@@ -14,7 +14,7 @@ const Contact = () => {
         <div className="text-center mb-20">
           <span className="text-brand-gold tracking-[0.4em] uppercase text-[10px] mb-4 block">Get in touch</span>
           <h1 className="text-5xl md:text-7xl font-serif uppercase tracking-widest leading-none text-brand-charcoal dark:text-white">
-            Contact <span className="gold-text italic">Us</span>
+            Contact <span className="italic text-brand-gold">Us</span>
           </h1>
         </div>
 
@@ -26,7 +26,7 @@ const Contact = () => {
             className="flex flex-col gap-12"
           >
             <div className="flex flex-col gap-6">
-              <h2 className="text-3xl font-serif text-brand-charcoal dark:text-white">Visit the <span className="gold-text italic">Vault</span></h2>
+              <h2 className="text-3xl font-serif text-brand-charcoal dark:text-white">Visit the <span className="italic text-brand-gold">Vault</span></h2>
               <p className="text-brand-charcoal/40 dark:text-white/40 leading-relaxed text-sm italic">
                 Experience luxury in person. Our boutique in Jaipur is open for private viewings and custom consultations.
               </p>
@@ -84,7 +84,7 @@ const Contact = () => {
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="luxury-card !p-12 relative"
+            className="bg-white dark:bg-[#1A1A1A] p-12 rounded-luxury border border-brand-beige dark:border-white/10 shadow-xl relative transition-colors duration-300"
           >
             <div className="absolute top-0 right-10 w-1 h-20 bg-brand-gold/20" />
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
@@ -106,11 +106,11 @@ const Contact = () => {
 
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Subject</label>
-                <select className="input-luxury dark:bg-[#1A1A1A]">
-                  <option>General Inquiry</option>
-                  <option>Custom Jewellery Request</option>
-                  <option>Order Tracking</option>
-                  <option>Corporate Gifting</option>
+                <select className="input-luxury appearance-none">
+                  <option className="dark:bg-[#1A1A1A]">General Inquiry</option>
+                  <option className="dark:bg-[#1A1A1A]">Custom Jewellery Request</option>
+                  <option className="dark:bg-[#1A1A1A]">Order Tracking</option>
+                  <option className="dark:bg-[#1A1A1A]">Corporate Gifting</option>
                 </select>
               </div>
 

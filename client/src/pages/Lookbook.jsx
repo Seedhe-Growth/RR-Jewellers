@@ -20,9 +20,9 @@ const Lookbook = () => {
            animate={{ opacity: 1, scale: 1 }}
            className="flex flex-col items-center gap-6"
         >
-          <Sparkles className="text-primary animate-pulse" size={32} />
+          <Sparkles className="text-brand-gold animate-pulse" size={32} />
           <h1 className="text-5xl md:text-7xl font-serif uppercase tracking-widest leading-none text-brand-charcoal dark:text-white">
-            The <span className="gold-text italic">Vault</span> Lookbook
+            The <span className="italic text-brand-gold">Vault</span> Lookbook
           </h1>
           <p className="text-brand-charcoal/40 dark:text-white/40 max-w-2xl text-sm md:text-base italic">
             Explore our curated visual journey. A celebration of craftsmanship, elegance, and the stories we wear.
@@ -48,7 +48,7 @@ const Lookbook = () => {
                 className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-90 transition-all duration-500 flex flex-col justify-end p-8">
-                 <span className="text-primary text-[10px] uppercase tracking-[0.4em] mb-2">{item.type}</span>
+                 <span className="text-brand-gold text-[10px] uppercase tracking-[0.4em] mb-2 font-bold">{item.type}</span>
                  <h3 className="text-2xl font-serif text-white tracking-widest uppercase mb-4">{item.title}</h3>
                  <button className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">
                     Explore Details <ExternalLink size={12} />
@@ -63,8 +63,8 @@ const Lookbook = () => {
       <section className="section-padding flex flex-col items-center mt-32 gap-12 bg-brand-beige/20 dark:bg-white/[0.02]">
         <div className="text-center">
           <Camera className="text-brand-gold mx-auto mb-6" size={40} />
-          <h2 className="text-4xl font-serif mb-4 uppercase tracking-widest text-brand-charcoal dark:text-white">Follow Our <span className="gold-text italic">Radiance</span></h2>
-          <p className="text-brand-charcoal/40 dark:text-white/40 text-sm tracking-widest uppercase">@rrjewellers62 • Since 2024</p>
+          <h2 className="text-4xl font-serif mb-4 uppercase tracking-widest text-brand-charcoal dark:text-white">Follow Our <span className="italic text-brand-gold">Radiance</span></h2>
+          <p className="text-brand-charcoal/40 dark:text-white/40 text-sm tracking-widest uppercase">@sairaornaments • Since 2024</p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 w-full max-w-[1400px]">
@@ -79,10 +79,10 @@ const Lookbook = () => {
         </div>
 
         <a 
-          href="https://instagram.com/rrjewellers62" 
+          href="https://instagram.com/sairaornaments" 
           target="_blank" 
           rel="noreferrer"
-          className="btn-premium flex items-center gap-3"
+          className="btn-luxury-filled flex items-center gap-3"
         >
           View Full Profile <Camera size={18} />
         </a>

@@ -57,20 +57,20 @@ const Auth = ({ isRegister = false }) => {
   };
 
   return (
-    <div className="bg-[#FFFDFB] min-h-screen pt-32 pb-24 px-6 flex items-center justify-center relative overflow-hidden">
+    <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] min-h-screen pt-32 pb-24 px-6 flex items-center justify-center relative overflow-hidden transition-colors duration-300">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[100px] pointer-events-none" />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md z-10 bg-white p-10 rounded-luxury shadow-xl border border-brand-beige relative"
+        className="w-full max-w-md z-10 bg-white dark:bg-[#1A1A1A] p-10 rounded-luxury shadow-xl border border-brand-beige dark:border-white/10 relative transition-colors duration-300"
       >
         <div className="flex flex-col items-center mb-10 text-center">
-          <h1 className="text-3xl font-serif text-brand-charcoal mb-2">
+          <h1 className="text-3xl font-serif text-brand-charcoal dark:text-white mb-2">
             {isLoginMode ? 'Welcome Back' : 'Join the Elegance'}
           </h1>
-          <p className="text-gray-400 text-xs uppercase tracking-widest font-bold">
+          <p className="text-brand-charcoal/40 dark:text-white/40 text-xs uppercase tracking-widest font-bold">
             {isLoginMode ? 'Sign in to your account' : 'Create an account to start shopping'}
           </p>
         </div>
@@ -87,7 +87,7 @@ const Auth = ({ isRegister = false }) => {
                 <div className="flex flex-col gap-1">
                   <label className="text-[10px] uppercase tracking-widest font-bold text-brand-gold">Full Name</label>
                   <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40 dark:text-white/40" size={16} />
                     <input 
                       {...register('name')}
                       placeholder="Jane Doe"
@@ -100,7 +100,7 @@ const Auth = ({ isRegister = false }) => {
                 <div className="flex flex-col gap-1">
                   <label className="text-[10px] uppercase tracking-widest font-bold text-brand-gold">Phone Number</label>
                   <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40 dark:text-white/40" size={16} />
                     <input 
                       {...register('phone')}
                       placeholder="+91 9123456789"
@@ -116,7 +116,7 @@ const Auth = ({ isRegister = false }) => {
           <div className="flex flex-col gap-1">
             <label className="text-[10px] uppercase tracking-widest font-bold text-brand-gold">Email Address</label>
             <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40 dark:text-white/40" size={16} />
               <input 
                 {...register('email')}
                 placeholder="jane@example.com"
@@ -129,7 +129,7 @@ const Auth = ({ isRegister = false }) => {
           <div className="flex flex-col gap-1">
             <label className="text-[10px] uppercase tracking-widest font-bold text-brand-gold">Password</label>
             <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40 dark:text-white/40" size={16} />
               <input 
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
@@ -139,7 +139,7 @@ const Auth = ({ isRegister = false }) => {
               <button 
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-gold transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40 dark:text-white/40 hover:text-brand-gold transition-colors"
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
@@ -157,8 +157,8 @@ const Auth = ({ isRegister = false }) => {
           </button>
         </form>
 
-        <div className="mt-8 pt-8 border-t border-brand-beige flex flex-col items-center gap-4 text-center">
-          <p className="text-gray-400 text-xs italic">
+        <div className="mt-8 pt-8 border-t border-brand-beige dark:border-white/5 flex flex-col items-center gap-4 text-center">
+          <p className="text-brand-charcoal/40 dark:text-white/40 text-xs italic">
             {isLoginMode ? "Don't have an account?" : "Already have an account?"}
           </p>
           <button 

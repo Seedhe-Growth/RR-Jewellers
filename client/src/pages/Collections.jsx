@@ -11,10 +11,24 @@ const Collections = () => {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        // We'll need to add a route for this on backend or just use products to find unique collections
-        // But since we have a Collection model, let's assume there's a route /collections
-        const { data } = await api.get('/products/collections'); // I'll add this route
-        setCollections(data.data.collections);
+        const { data } = await api.get('/products'); 
+        // Group by collection or just show categories as collections if backend doesn't have it
+        const uniqueCollections = Array.from(new Set(data.data.products.map(p => p.collection?.name))).filter(Boolean).map(name => {
+          const p = data.data.products.find(prod => prod.collection?.name === name);
+          return { _id: p.collection?._id, name, slug: p.collection?.slug, coverImage: p.images[0] };
+        });
+        
+        if (uniqueCollections.length > 0) {
+          setCollections(uniqueCollections);
+        } else {
+          // Fallback
+          setCollections([
+            { _id: '1', name: 'Bridal Couture', slug: 'bridal', coverImage: { url: 'https://images.unsplash.com/photo-1611085583191-a3b1a3089d9a?auto=format&fit=crop&q=80&w=1200' } },
+            { _id: '2', name: 'Minimalist Gold', slug: 'minimalist', coverImage: { url: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&q=80&w=1200' } },
+            { _id: '3', name: 'Royal Heritage', slug: 'heritage', coverImage: { url: 'https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?auto=format&fit=crop&q=80&w=1200' } },
+            { _id: '4', name: 'Daily Elegance', slug: 'daily', coverImage: { url: 'https://images.unsplash.com/photo-1573408302185-91275ca862fa?auto=format&fit=crop&q=80&w=1200' } }
+          ]);
+        }
       } catch (err) {
         console.error(err);
       } finally {

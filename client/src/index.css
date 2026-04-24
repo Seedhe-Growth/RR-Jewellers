@@ -29,6 +29,10 @@
     @apply text-brand-gold;
   }
 
+  .glass-card {
+    @apply backdrop-blur-md bg-white/70 dark:bg-black/50 border border-white/20 dark:border-white/10 rounded-luxury shadow-xl;
+  }
+
   .section-padding {
     @apply py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto;
   }
@@ -58,6 +62,25 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b8860b;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass {
+  background: rgba(10, 10, 10, 0.7);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Animations */

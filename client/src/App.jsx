@@ -15,6 +15,7 @@ import Contact from './pages/Contact';
 import AdminDashboard from './pages/Admin/Dashboard';
 import Collections from './pages/Collections';
 import Lookbook from './pages/Lookbook';
+import Wishlist from './pages/Wishlist';
 
 // Components
 import Layout from './components/Layout';
@@ -41,6 +42,7 @@ function App() {
           <Route path="lookbook" element={<Lookbook />} />
           <Route path="product/:id" element={<ProductDetail />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="wishlist" element={<Wishlist />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Auth />} />

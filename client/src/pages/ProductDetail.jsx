@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ImageGallery from '../components/shop/ImageGallery';
 import api from '../services/api';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import { toast } from 'react-toastify';
 import ProductCard from '../components/common/ProductCard';
 
@@ -16,6 +17,9 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
+
+  const isLiked = product ? isInWishlist(product._id) : false;
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -54,7 +58,7 @@ const ProductDetail = () => {
   return (
     <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] min-h-screen pt-24 pb-20 transition-colors duration-300">
       {/* Breadcrumbs */}
-      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-white/40">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-charcoal/40 dark:text-white/40">
         <Link to="/" className="hover:text-brand-gold">Home</Link>
         <ChevronRight size={10} />
         <Link to="/shop" className="hover:text-brand-gold">Shop</Link>
@@ -80,9 +84,9 @@ const ProductDetail = () => {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1 text-brand-gold">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className={i < Math.floor(product.ratingsAverage) ? "fill-brand-gold" : "text-gray-200"} />
+                  <Star key={i} size={14} className={i < Math.floor(product.ratingsAverage) ? "fill-brand-gold" : "text-brand-beige dark:text-white/10"} />
                 ))}
-                <span className="text-[10px] text-gray-400 ml-2 font-bold uppercase tracking-widest">({product.ratingsQuantity} Reviews)</span>
+                <span className="text-[10px] text-brand-charcoal/40 dark:text-white/40 ml-2 font-bold uppercase tracking-widest">({product.ratingsQuantity} Reviews)</span>
               </div>
             </div>
           </div>
@@ -90,7 +94,7 @@ const ProductDetail = () => {
           <div className="flex items-baseline gap-4">
             <span className="text-3xl font-bold text-brand-charcoal dark:text-white">₹{product.price}</span>
             {product.discountPrice && (
-              <span className="text-xl text-gray-300 line-through">₹{product.discountPrice}</span>
+              <span className="text-xl text-brand-charcoal/20 dark:text-white/20 line-through">₹{product.discountPrice}</span>
             )}
           </div>
 
@@ -102,9 +106,9 @@ const ProductDetail = () => {
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
               <div className="flex items-center border border-brand-beige dark:border-white/10 rounded-luxury px-2 bg-white dark:bg-[#1A1A1A]">
-                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 text-gray-400 hover:text-brand-gold transition-colors"><Minus size={16} /></button>
+                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 text-brand-charcoal/40 dark:text-white/40 hover:text-brand-gold transition-colors"><Minus size={16} /></button>
                 <span className="w-10 text-center font-bold text-brand-charcoal dark:text-white">{quantity}</span>
-                <button onClick={() => setQuantity(quantity + 1)} className="p-2 text-gray-400 hover:text-brand-gold transition-colors"><Plus size={16} /></button>
+                <button onClick={() => setQuantity(quantity + 1)} className="p-2 text-brand-charcoal/40 dark:text-white/40 hover:text-brand-gold transition-colors"><Plus size={16} /></button>
               </div>
               <button 
                 onClick={handleAddToCart}
@@ -112,8 +116,15 @@ const ProductDetail = () => {
               >
                 <ShoppingBag size={18} /> Add to Cart
               </button>
-              <button className="w-14 h-14 border border-brand-beige rounded-luxury flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-500 transition-all">
-                <Heart size={20} />
+              <button 
+                onClick={() => toggleWishlist(product)}
+                className={`w-14 h-14 border rounded-luxury flex items-center justify-center transition-all ${
+                  isLiked 
+                    ? 'bg-red-500 border-red-500 text-white' 
+                    : 'border-brand-beige dark:border-white/10 text-brand-charcoal/40 dark:text-white/40 hover:text-red-500 hover:border-red-500'
+                }`}
+              >
+                <Heart size={20} className={isLiked ? 'fill-current' : ''} />
               </button>
             </div>
             
@@ -129,12 +140,12 @@ const ProductDetail = () => {
 
           {/* Tabs */}
           <div className="mt-8">
-            <div className="flex border-b border-brand-beige mb-6">
+            <div className="flex border-b border-brand-beige dark:border-white/5 mb-6">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-2 text-[10px] uppercase tracking-widest font-bold transition-all relative ${activeTab === tab.id ? 'text-brand-gold' : 'text-gray-400 hover:text-brand-charcoal'}`}
+                  className={`px-6 py-2 text-[10px] uppercase tracking-widest font-bold transition-all relative ${activeTab === tab.id ? 'text-brand-gold' : 'text-brand-charcoal/40 dark:text-white/40 hover:text-brand-charcoal dark:hover:text-white'}`}
                 >
                   {tab.label}
                   {activeTab === tab.id && (
@@ -160,15 +171,15 @@ const ProductDetail = () => {
           <div className="grid grid-cols-3 gap-4 pt-10 border-t border-brand-beige dark:border-white/5">
             <div className="flex flex-col items-center text-center gap-2">
               <Truck className="text-brand-gold" size={20} />
-              <span className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Free Shipping</span>
+              <span className="text-[9px] uppercase tracking-widest font-bold text-brand-charcoal/40 dark:text-white/40">Free Shipping</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
               <ShieldCheck className="text-brand-gold" size={20} />
-              <span className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Authentic</span>
+              <span className="text-[9px] uppercase tracking-widest font-bold text-brand-charcoal/40 dark:text-white/40">Authentic</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
               <Gem className="text-brand-gold" size={20} />
-              <span className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Premium Quality</span>
+              <span className="text-[9px] uppercase tracking-widest font-bold text-brand-charcoal/40 dark:text-white/40">Premium Quality</span>
             </div>
           </div>
         </div>
