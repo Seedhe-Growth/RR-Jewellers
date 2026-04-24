@@ -30,6 +30,27 @@ exports.createOrder = async (req, res) => {
 
     const createdOrder = await order.save();
 
+    // Save address to user profile if not already present
+    if (req.user) {
+      const user = await require('../models/User').findById(req.user._id);
+      const addressExists = user.addresses.some(addr => 
+        addr.street === shippingAddress.street && 
+        addr.zipCode === shippingAddress.zipCode
+      );
+
+      if (!addressExists) {
+        user.addresses.push({
+          street: shippingAddress.street,
+          city: shippingAddress.city,
+          state: shippingAddress.state,
+          zipCode: shippingAddress.zipCode,
+          country: shippingAddress.country,
+          isDefault: user.addresses.length === 0
+        });
+        await user.save();
+      }
+    }
+
     res.status(201).json({
       status: 'success',
       data: { order: createdOrder }

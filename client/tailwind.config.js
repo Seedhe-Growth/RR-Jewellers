@@ -9,14 +9,15 @@ export default {
     extend: {
       colors: {
         brand: {
-          beige: '#F8F5F2',
-          gold: '#D4AF37',
+          dark: '#0f0f0f',
+          gold: '#d4af37',
+          beige: '#f5f5f5',
+          cream: '#faf9f6',
           charcoal: '#2C2C2C',
-          cream: '#FFFDFB',
         },
-        primary: '#F8F5F2',
-        secondary: '#D4AF37',
-        accent: '#2C2C2C',
+        primary: '#0f0f0f',
+        secondary: '#d4af37',
+        accent: '#f5f5f5',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'serif'],

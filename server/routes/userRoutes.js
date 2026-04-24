@@ -13,4 +13,8 @@ router.get('/profile', (req, res) => {
   res.status(200).json({ status: 'success', data: { user: req.user } });
 });
 
+const userController = require('../controllers/userController');
+router.get('/wishlist', userController.getWishlist);
+router.patch('/wishlist', userController.updateWishlist);
+
 module.exports = router;

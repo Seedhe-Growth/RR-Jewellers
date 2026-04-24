@@ -1,7 +1,7 @@
-# RR Jewellers / The Jewel Vault
+# Saira Ornaments / The Jewel Vault
 
 ## Project Synopsis
-**RR Jewellers** (The Jewel Vault) is a premium, full-stack MERN (MongoDB, Express, React, Node.js) e-commerce and portfolio platform designed for a luxury jewellery boutique. The project focuses on bridging the gap between high-end editorial storytelling and seamless digital commerce, catering to a modern, Instagram-first audience.
+**Saira Ornaments** (The Jewel Vault) is a premium, full-stack MERN (MongoDB, Express, React, Node.js) e-commerce and portfolio platform designed for a luxury jewellery boutique. The project focuses on bridging the gap between high-end editorial storytelling and seamless digital commerce, catering to a modern, Instagram-first audience.
 
 ## Key Features
 - **Premium UI/UX**: Minimalist Black & Gold aesthetic with glassmorphism and Framer Motion animations.

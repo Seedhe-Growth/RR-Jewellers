@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#FFFDFB] text-brand-charcoal antialiased selection:bg-brand-gold selection:text-white font-sans transition-colors duration-300 dark:bg-[#0A0A0A] dark:text-white;
+    @apply bg-brand-cream text-brand-dark antialiased selection:bg-brand-gold selection:text-white font-sans transition-colors duration-300 dark:bg-brand-dark dark:text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -14,11 +14,11 @@
 
 @layer components {
   .btn-luxury {
-    @apply px-8 py-3 rounded-luxury uppercase tracking-widest text-xs font-semibold transition-all duration-300 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white active:scale-95;
+    @apply px-10 py-4 rounded-none uppercase tracking-[0.3em] text-[10px] font-bold transition-all duration-500 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white active:scale-95;
   }
 
   .btn-luxury-filled {
-    @apply px-8 py-3 rounded-luxury uppercase tracking-widest text-xs font-semibold transition-all duration-300 bg-brand-gold text-white border border-brand-gold hover:bg-transparent hover:text-brand-gold active:scale-95;
+    @apply px-10 py-4 rounded-none uppercase tracking-[0.3em] text-[10px] font-bold transition-all duration-500 bg-brand-gold text-white border border-brand-gold hover:bg-transparent hover:text-brand-gold active:scale-95;
   }
 
   .luxury-card {
@@ -34,7 +34,7 @@
   }
 
   .section-padding {
-    @apply py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto;
+    @apply py-24 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto;
   }
 
   .input-luxury {

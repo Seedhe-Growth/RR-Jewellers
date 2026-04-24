@@ -26,6 +26,21 @@ const Checkout = () => {
     paymentMethod: 'Cash on Delivery'
   });
 
+  // Pre-fill address if user has saved addresses
+  useEffect(() => {
+    if (user && user.addresses && user.addresses.length > 0) {
+      const defaultAddr = user.addresses.find(addr => addr.isDefault) || user.addresses[0];
+      setFormData(prev => ({
+        ...prev,
+        street: defaultAddr.street || '',
+        city: defaultAddr.city || '',
+        state: defaultAddr.state || '',
+        zipCode: defaultAddr.zipCode || '',
+        country: defaultAddr.country || 'India',
+      }));
+    }
+  }, [user]);
+
   const [loadingPincode, setLoadingPincode] = useState(false);
   const countries = Country.getAllCountries();
   const states = formData.countryCode ? State.getStatesOfCountry(formData.countryCode) : [];
