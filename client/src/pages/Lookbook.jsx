@@ -12,7 +12,7 @@ const lookbookItems = [
 
 const Lookbook = () => {
   return (
-    <div className="bg-[#050505] min-h-screen pt-24 pb-20">
+    <div className="bg-[#FFFDFB] dark:bg-[#050505] min-h-screen pt-24 pb-20 transition-colors duration-300">
       {/* Header */}
       <section className="section-padding text-center">
         <motion.div
@@ -21,10 +21,10 @@ const Lookbook = () => {
            className="flex flex-col items-center gap-6"
         >
           <Sparkles className="text-primary animate-pulse" size={32} />
-          <h1 className="text-5xl md:text-7xl font-serif uppercase tracking-widest leading-none">
+          <h1 className="text-5xl md:text-7xl font-serif uppercase tracking-widest leading-none text-brand-charcoal dark:text-white">
             The <span className="gold-text italic">Vault</span> Lookbook
           </h1>
-          <p className="text-white/40 max-w-2xl text-sm md:text-base italic">
+          <p className="text-brand-charcoal/40 dark:text-white/40 max-w-2xl text-sm md:text-base italic">
             Explore our curated visual journey. A celebration of craftsmanship, elegance, and the stories we wear.
           </p>
         </motion.div>
@@ -60,11 +60,11 @@ const Lookbook = () => {
       </section>
 
       {/* Instagram Bridge */}
-      <section className="section-padding flex flex-col items-center mt-32 gap-12 bg-white/[0.02]">
+      <section className="section-padding flex flex-col items-center mt-32 gap-12 bg-brand-beige/20 dark:bg-white/[0.02]">
         <div className="text-center">
-          <Camera className="text-primary mx-auto mb-6" size={40} />
-          <h2 className="text-4xl font-serif mb-4 uppercase tracking-widest">Follow Our <span className="gold-text italic">Radiance</span></h2>
-          <p className="text-white/40 text-sm tracking-widest uppercase">@rrjewellers62 • Since 2024</p>
+          <Camera className="text-brand-gold mx-auto mb-6" size={40} />
+          <h2 className="text-4xl font-serif mb-4 uppercase tracking-widest text-brand-charcoal dark:text-white">Follow Our <span className="gold-text italic">Radiance</span></h2>
+          <p className="text-brand-charcoal/40 dark:text-white/40 text-sm tracking-widest uppercase">@rrjewellers62 • Since 2024</p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 w-full max-w-[1400px]">

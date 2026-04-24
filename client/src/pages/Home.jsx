@@ -30,7 +30,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-[#FFFDFB]">
+    <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] transition-colors duration-300">
       <Hero />
 
       {/* Collections Section */}
@@ -46,7 +46,7 @@ const Home = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-serif text-brand-charcoal"
+            className="text-4xl md:text-5xl font-serif text-brand-charcoal dark:text-white"
           >
             Shop by <span className="italic">Collection</span>
           </motion.h2>
@@ -55,13 +55,13 @@ const Home = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="section-padding bg-brand-beige/30">
+      <section className="section-padding bg-brand-beige/30 dark:bg-white/[0.02]">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
           <div>
             <span className="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Trending Now</span>
-            <h2 className="text-4xl md:text-5xl font-serif text-brand-charcoal">Featured <span className="italic">Pieces</span></h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-brand-charcoal dark:text-white">Featured <span className="italic">Pieces</span></h2>
           </div>
-          <Link to="/shop" className="text-xs uppercase tracking-widest font-bold border-b-2 border-brand-gold pb-1 hover:text-brand-gold transition-all mt-6 md:mt-0">
+          <Link to="/shop" className="text-xs uppercase tracking-widest font-bold border-b-2 border-brand-gold pb-1 hover:text-brand-gold dark:text-white/80 dark:hover:text-brand-gold transition-all mt-6 md:mt-0">
             View All Products
           </Link>
         </div>
@@ -94,7 +94,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-              <h3 className="font-serif text-lg text-brand-charcoal mb-1">{product.title}</h3>
+              <h3 className="font-serif text-lg text-brand-charcoal dark:text-white mb-1">{product.title}</h3>
               <p className="text-brand-gold font-bold">₹{product.price}</p>
             </motion.div>
           ))}
@@ -105,14 +105,14 @@ const Home = () => {
       <section className="section-padding text-center">
         <div className="max-w-3xl mx-auto">
           <span className="text-brand-gold text-[24px] font-serif mb-6 block">"</span>
-          <p className="text-xl md:text-2xl font-serif text-brand-charcoal italic mb-8 leading-relaxed">
+          <p className="text-xl md:text-2xl font-serif text-brand-charcoal dark:text-white italic mb-8 leading-relaxed">
             The quality and design of Saira Ornaments are simply unmatched. I feel like royalty every time I wear their pieces.
           </p>
           <div className="flex flex-col items-center">
             <div className="w-12 h-12 rounded-full overflow-hidden mb-4">
               <img src="https://i.pravatar.cc/150?u=saira" alt="Client" />
             </div>
-            <h4 className="text-xs uppercase tracking-widest font-bold">Ananya Sharma</h4>
+            <h4 className="text-xs uppercase tracking-widest font-bold text-brand-charcoal dark:text-white">Ananya Sharma</h4>
             <span className="text-[10px] text-gray-500 uppercase tracking-widest">Verified Buyer</span>
           </div>
         </div>
@@ -121,7 +121,7 @@ const Home = () => {
       {/* Instagram Social Proof */}
       <section className="pb-20 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h3 className="text-sm uppercase tracking-[0.3em] font-bold">Follow Our Journey</h3>
+          <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-brand-charcoal dark:text-white">Follow Our Journey</h3>
           <p className="text-brand-gold font-serif italic text-lg">@SairaOrnaments</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">

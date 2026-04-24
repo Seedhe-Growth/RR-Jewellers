@@ -25,7 +25,7 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="bg-[#FFFDFB] min-h-screen pt-24 pb-20">
+    <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] min-h-screen pt-24 pb-20 transition-colors duration-300">
       <section className="py-20 px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,10 +33,10 @@ const Collections = () => {
           className="max-w-3xl mx-auto"
         >
           <Sparkles className="text-brand-gold mx-auto mb-6" size={32} />
-          <h1 className="text-5xl md:text-7xl font-serif text-brand-charcoal mb-6 uppercase tracking-tighter">
+          <h1 className="text-5xl md:text-7xl font-serif text-brand-charcoal dark:text-white mb-6 uppercase tracking-tighter">
             Our <span className="italic text-brand-gold">Curated</span> Collections
           </h1>
-          <p className="text-gray-500 text-sm md:text-base italic leading-relaxed">
+          <p className="text-brand-charcoal/60 dark:text-white/40 text-sm md:text-base italic leading-relaxed">
             Each collection tells a unique story of heritage, modern aesthetics, and unparalleled craftsmanship.
           </p>
         </motion.div>

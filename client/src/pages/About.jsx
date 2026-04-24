@@ -3,7 +3,7 @@ import { ShieldCheck, Gem, Sparkles, Heart } from 'lucide-react';
 
 const About = () => {
   return (
-    <div className="bg-luxury-black min-h-screen pt-24">
+    <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] min-h-screen pt-24 transition-colors duration-300">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -31,26 +31,26 @@ const About = () => {
           viewport={{ once: true }}
           className="flex flex-col gap-8"
         >
-          <span className="text-primary tracking-[0.3em] uppercase text-[10px] font-bold">The Journey</span>
-          <h2 className="text-4xl md:text-5xl font-serif">The Heart Behind <span className="gold-text italic">RR Jewellers</span></h2>
+          <span className="text-brand-gold tracking-[0.3em] uppercase text-[10px] font-bold">The Journey</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-brand-charcoal dark:text-white">The Heart Behind <span className="gold-text italic">RR Jewellers</span></h2>
           <p className="text-white/60 leading-loose">
             RR Jewellers (The Jewel Vault) started with a simple vision: to make high-end luxury accessible to the modern woman who values both tradition and contemporary elegance. What began as an Instagram-first boutique in Jaipur has grown into a destination for those seeking meticulously crafted daily wear and bridal masterpieces.
           </p>
-          <p className="text-white/60 leading-loose">
+          <p className="text-brand-charcoal/60 dark:text-white/60 leading-loose">
             Our founder's passion for craftsmanship and attention to detail ensures that every piece in our collection tells a unique story. From the weight of the gold to the clarity of the gemstones, we never compromise on quality.
           </p>
-          <div className="flex gap-12 mt-4 pt-8 border-t border-white/5">
+          <div className="flex gap-12 mt-4 pt-8 border-t border-brand-beige dark:border-white/5">
              <div className="flex flex-col">
-                <span className="text-3xl font-serif text-primary">100%</span>
-                <span className="text-[10px] uppercase tracking-widest text-white/40">Hallmarked</span>
+                <span className="text-3xl font-serif text-brand-gold">100%</span>
+                <span className="text-[10px] uppercase tracking-widest text-brand-charcoal/40 dark:text-white/40">Hallmarked</span>
              </div>
              <div className="flex flex-col">
-                <span className="text-3xl font-serif text-primary">500+</span>
-                <span className="text-[10px] uppercase tracking-widest text-white/40">Happy Clients</span>
+                <span className="text-3xl font-serif text-brand-gold">500+</span>
+                <span className="text-[10px] uppercase tracking-widest text-brand-charcoal/40 dark:text-white/40">Happy Clients</span>
              </div>
              <div className="flex flex-col">
-                <span className="text-3xl font-serif text-primary">Jaipur</span>
-                <span className="text-[10px] uppercase tracking-widest text-white/40">Heritage</span>
+                <span className="text-3xl font-serif text-brand-gold">Jaipur</span>
+                <span className="text-[10px] uppercase tracking-widest text-brand-charcoal/40 dark:text-white/40">Heritage</span>
              </div>
           </div>
         </motion.div>
@@ -71,9 +71,9 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="bg-white/[0.02] py-24 px-6 md:px-12">
+      <section className="bg-brand-beige/20 dark:bg-white/[0.02] py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto text-center mb-20">
-          <h2 className="text-4xl font-serif uppercase tracking-widest">Our Core <span className="gold-text italic">Essence</span></h2>
+          <h2 className="text-4xl font-serif uppercase tracking-widest text-brand-charcoal dark:text-white">Our Core <span className="gold-text italic">Essence</span></h2>
         </div>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
@@ -86,8 +86,8 @@ const About = () => {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all">
                 <item.icon size={28} />
               </div>
-              <h3 className="text-lg font-serif tracking-widest uppercase">{item.title}</h3>
-              <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+              <h3 className="text-lg font-serif tracking-widest uppercase text-brand-charcoal dark:text-white">{item.title}</h3>
+              <p className="text-brand-charcoal/40 dark:text-white/40 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -42,8 +42,8 @@ const ProductDetail = () => {
     toast.success(`${product.title} added to cart!`);
   };
 
-  if (loading) return <div className="h-screen flex items-center justify-center font-serif italic text-brand-gold">Loading Saira's Creation...</div>;
-  if (!product) return <div className="h-screen flex items-center justify-center">Product not found</div>;
+  if (loading) return <div className="h-screen flex items-center justify-center font-serif italic text-brand-gold bg-[#FFFDFB] dark:bg-[#0A0A0A]">Loading Saira's Creation...</div>;
+  if (!product) return <div className="h-screen flex items-center justify-center bg-[#FFFDFB] dark:bg-[#0A0A0A] dark:text-white">Product not found</div>;
 
   const tabs = [
     { id: 'description', label: 'Description' },
@@ -52,14 +52,14 @@ const ProductDetail = () => {
   ];
 
   return (
-    <div className="bg-[#FFFDFB] min-h-screen pt-24 pb-20">
+    <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] min-h-screen pt-24 pb-20 transition-colors duration-300">
       {/* Breadcrumbs */}
-      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-gray-400">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-white/40">
         <Link to="/" className="hover:text-brand-gold">Home</Link>
         <ChevronRight size={10} />
         <Link to="/shop" className="hover:text-brand-gold">Shop</Link>
         <ChevronRight size={10} />
-        <span className="text-brand-charcoal">{product.title}</span>
+        <span className="text-brand-charcoal dark:text-white">{product.title}</span>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -76,7 +76,7 @@ const ProductDetail = () => {
             >
               {product.category?.name || 'Handcrafted'}
             </motion.span>
-            <h1 className="text-4xl md:text-5xl font-serif text-brand-charcoal mb-4 leading-tight">{product.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-serif text-brand-charcoal dark:text-white mb-4 leading-tight">{product.title}</h1>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1 text-brand-gold">
                 {[...Array(5)].map((_, i) => (
@@ -88,22 +88,22 @@ const ProductDetail = () => {
           </div>
 
           <div className="flex items-baseline gap-4">
-            <span className="text-3xl font-bold text-brand-charcoal">₹{product.price}</span>
+            <span className="text-3xl font-bold text-brand-charcoal dark:text-white">₹{product.price}</span>
             {product.discountPrice && (
               <span className="text-xl text-gray-300 line-through">₹{product.discountPrice}</span>
             )}
           </div>
 
-          <p className="text-gray-500 text-sm leading-relaxed border-b border-brand-beige pb-8 italic">
+          <p className="text-brand-charcoal/60 dark:text-white/40 text-sm leading-relaxed border-b border-brand-beige dark:border-white/5 pb-8 italic">
             {product.description}
           </p>
 
           {/* Actions */}
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
-              <div className="flex items-center border border-brand-beige rounded-luxury px-2 bg-white">
+              <div className="flex items-center border border-brand-beige dark:border-white/10 rounded-luxury px-2 bg-white dark:bg-[#1A1A1A]">
                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 text-gray-400 hover:text-brand-gold transition-colors"><Minus size={16} /></button>
-                <span className="w-10 text-center font-bold text-brand-charcoal">{quantity}</span>
+                <span className="w-10 text-center font-bold text-brand-charcoal dark:text-white">{quantity}</span>
                 <button onClick={() => setQuantity(quantity + 1)} className="p-2 text-gray-400 hover:text-brand-gold transition-colors"><Plus size={16} /></button>
               </div>
               <button 
@@ -143,7 +143,7 @@ const ProductDetail = () => {
                 </button>
               ))}
             </div>
-            <div className="text-sm text-gray-500 leading-relaxed min-h-[100px]">
+            <div className="text-sm text-brand-charcoal/60 dark:text-white/40 leading-relaxed min-h-[100px]">
               {activeTab === 'description' && <p>{product.description}</p>}
               {activeTab === 'materials' && (
                 <ul className="list-disc pl-5 space-y-2">
@@ -157,7 +157,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Perks */}
-          <div className="grid grid-cols-3 gap-4 pt-10 border-t border-brand-beige">
+          <div className="grid grid-cols-3 gap-4 pt-10 border-t border-brand-beige dark:border-white/5">
             <div className="flex flex-col items-center text-center gap-2">
               <Truck className="text-brand-gold" size={20} />
               <span className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Free Shipping</span>
@@ -179,7 +179,7 @@ const ProductDetail = () => {
         <section className="max-w-7xl mx-auto px-6 mt-32">
           <div className="text-center mb-16">
             <span className="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">You May Also Love</span>
-            <h2 className="text-4xl font-serif text-brand-charcoal">Related <span className="italic">Pieces</span></h2>
+            <h2 className="text-4xl font-serif text-brand-charcoal dark:text-white">Related <span className="italic">Pieces</span></h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatedProducts.map((p) => (

@@ -52,9 +52,9 @@ const Shop = () => {
   ];
 
   return (
-    <div className="bg-[#FFFDFB] min-h-screen pt-24">
+    <div className="bg-[#FFFDFB] dark:bg-[#0A0A0A] min-h-screen pt-24 transition-colors duration-300">
       {/* Page Header */}
-      <div className="bg-brand-beige/30 py-20 px-6">
+      <div className="bg-brand-beige/30 dark:bg-white/[0.02] py-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
           <motion.span 
             initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ const Shop = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl font-serif text-brand-charcoal mb-6"
+            className="text-5xl md:text-6xl font-serif text-brand-charcoal dark:text-white mb-6"
           >
             Explore <span className="italic">Jewellery</span>
           </motion.h1>
@@ -74,7 +74,7 @@ const Shop = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-gray-500 max-w-xl text-sm italic"
+            className="text-brand-charcoal/60 dark:text-white/40 max-w-xl text-sm italic"
           >
             Discover meticulously crafted pieces designed to elevate your everyday elegance and special moments.
           </motion.p>
@@ -82,7 +82,7 @@ const Shop = () => {
       </div>
 
       {/* Toolbar */}
-      <div className="sticky top-[72px] z-40 bg-white/80 backdrop-blur-md border-y border-brand-beige">
+      <div className="sticky top-[72px] z-40 bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-md border-y border-brand-beige dark:border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap justify-between items-center gap-6">
           <div className="flex items-center gap-8 overflow-x-auto no-scrollbar pb-1 md:pb-0">
             {categories.map((cat) => (
@@ -90,7 +90,7 @@ const Shop = () => {
                 key={cat.slug}
                 onClick={() => handleCategoryChange(cat.slug)}
                 className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-all relative pb-2 whitespace-nowrap ${
-                  currentCat === cat.slug ? 'text-brand-gold' : 'text-gray-400 hover:text-brand-charcoal'
+                  currentCat === cat.slug ? 'text-brand-gold' : 'text-gray-400 dark:text-white/40 hover:text-brand-charcoal dark:hover:text-white'
                 }`}
               >
                 {cat.name}
@@ -103,16 +103,16 @@ const Shop = () => {
 
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-3">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Sort:</span>
+              <span className="text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-white/40">Sort:</span>
               <select 
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-transparent text-brand-charcoal text-[10px] uppercase tracking-widest font-bold outline-none cursor-pointer hover:text-brand-gold transition-colors"
+                className="bg-transparent text-brand-charcoal dark:text-white text-[10px] uppercase tracking-widest font-bold outline-none cursor-pointer hover:text-brand-gold transition-colors"
               >
-                <option value="newest">Newest</option>
-                <option value="low-high">Price: Low-High</option>
-                <option value="high-low">Price: High-Low</option>
-                <option value="popular">Popularity</option>
+                <option value="newest" className="dark:bg-[#0A0A0A]">Newest</option>
+                <option value="low-high" className="dark:bg-[#0A0A0A]">Price: Low-High</option>
+                <option value="high-low" className="dark:bg-[#0A0A0A]">Price: High-Low</option>
+                <option value="popular" className="dark:bg-[#0A0A0A]">Popularity</option>
               </select>
             </div>
             <div className="hidden sm:flex items-center gap-4 text-brand-beige border-l border-brand-beige pl-6">

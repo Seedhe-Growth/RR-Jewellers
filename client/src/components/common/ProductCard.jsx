@@ -32,12 +32,12 @@ const ProductCard = ({ product }) => {
           
           {/* Quick Actions */}
           <div className="absolute top-4 right-4 flex flex-col space-y-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
-            <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-charcoal hover:bg-brand-gold hover:text-white shadow-lg transition-colors">
+            <button className="w-10 h-10 bg-white dark:bg-[#1A1A1A] rounded-full flex items-center justify-center text-brand-charcoal dark:text-white hover:bg-brand-gold dark:hover:bg-brand-gold hover:text-white shadow-lg transition-colors">
               <Heart size={18} />
             </button>
             <button 
               onClick={handleAddToCart}
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-charcoal hover:bg-brand-gold hover:text-white shadow-lg transition-colors"
+              className="w-10 h-10 bg-white dark:bg-[#1A1A1A] rounded-full flex items-center justify-center text-brand-charcoal dark:text-white hover:bg-brand-gold dark:hover:bg-brand-gold hover:text-white shadow-lg transition-colors"
             >
               <ShoppingBag size={18} />
             </button>
@@ -53,8 +53,8 @@ const ProductCard = ({ product }) => {
 
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="text-brand-charcoal font-serif text-lg leading-tight group-hover:text-brand-gold transition-colors">{product.title}</h3>
-            <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-1">
+            <h3 className="text-brand-charcoal dark:text-white font-serif text-lg leading-tight group-hover:text-brand-gold transition-colors">{product.title}</h3>
+            <p className="text-[10px] text-gray-400 dark:text-white/40 uppercase tracking-widest font-bold mt-1">
               {product.category?.name || 'Jewellery'}
             </p>
           </div>

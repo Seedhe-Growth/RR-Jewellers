@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#FFFDFB] text-brand-charcoal antialiased selection:bg-brand-gold selection:text-white font-sans;
+    @apply bg-[#FFFDFB] text-brand-charcoal antialiased selection:bg-brand-gold selection:text-white font-sans transition-colors duration-300 dark:bg-[#0A0A0A] dark:text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -22,7 +22,7 @@
   }
 
   .luxury-card {
-    @apply bg-white rounded-luxury border border-brand-beige p-6 shadow-sm transition-all duration-500 hover:shadow-gold-glow hover:-translate-y-1;
+    @apply bg-white dark:bg-[#1A1A1A] rounded-luxury border border-brand-beige dark:border-white/10 p-6 shadow-sm transition-all duration-500 hover:shadow-gold-glow hover:-translate-y-1;
   }
 
   .gold-text {
@@ -34,7 +34,7 @@
   }
 
   .input-luxury {
-    @apply bg-white border border-brand-beige rounded-luxury px-4 py-3 focus:border-brand-gold outline-none transition-all duration-300 placeholder:text-gray-400;
+    @apply bg-white dark:bg-[#1A1A1A] border border-brand-beige dark:border-white/10 rounded-luxury px-4 py-3 focus:border-brand-gold outline-none transition-all duration-300 placeholder:text-gray-400 dark:text-white;
   }
 }
 
@@ -45,6 +45,10 @@
 
 ::-webkit-scrollbar-track {
   background: #F8F5F2;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1A1A1A;
 }
 
 ::-webkit-scrollbar-thumb {
